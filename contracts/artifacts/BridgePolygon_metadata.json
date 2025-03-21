@@ -1,0 +1,215 @@
+{
+	"compiler": {
+		"version": "0.8.19+commit.7dd6d404"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "token",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "date",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "nonce",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "enum BridgeBase.Step",
+						"name": "step",
+						"type": "uint8"
+					}
+				],
+				"name": "Transfer",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "admin",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "burn",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "otherChainNonce",
+						"type": "uint256"
+					}
+				],
+				"name": "mint",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "nonce",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "processedNonces",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "token",
+				"outputs": [
+					{
+						"internalType": "contract FFATtoken",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/BridgePolygon.sol": "BridgePolygon"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/BridgeBase.sol": {
+			"keccak256": "0xd4bfb7de06a787cd3d6a4e26bcbcdb5ae5274d754262e2c5001b676c67f245dc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://44a4782f2ae9789fb4686584732b571dba6707b9784f39d4e1ce8a8ce95d52d6",
+				"dweb:/ipfs/Qmaiq4FPpSuxw6pTmp1kznsgKvLVkzZYgL21j4GKjr2GT1"
+			]
+		},
+		"contracts/BridgePolygon.sol": {
+			"keccak256": "0xffd677b8d3981ac0ca57ef6012c5c7dd2519d3bf7a637c882eddbdfc743a1929",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://ad61366b5f76a12a1fc46c5164647e870ee6a945faf3fdfb9b82f774dcafd554",
+				"dweb:/ipfs/Qme22f6fB7sGQNj7xz8YmeCyyJwEZws8Pohoy8tFyx9xDQ"
+			]
+		},
+		"contracts/FFATtoken.sol": {
+			"keccak256": "0xff6ba50321473d3e0c3dbb65197ab774a7bee3f3833aee36493b079edee15bd8",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://159ad9db48c4f5cefa45c434f0080d398a995ce59cb2eeea30e1b7dfce0febf1",
+				"dweb:/ipfs/QmQGEdZEzRkJ8oaMSJgke9XenebtDWooiNwcRcwbY2RatB"
+			]
+		}
+	},
+	"version": 1
+}
