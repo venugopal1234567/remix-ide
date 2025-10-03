@@ -27,7 +27,7 @@ contract BridgeBase {
 
     function burn(address to, uint amount) external {
         // Transfer tokens from the sender to this contract
-        require(token.transferFrom(msg.sender, address(this), amount), "Transfer failed");
+        require(token.transferFrom(msg.sender, admin, amount), "Transfer failed");
         
         // Burn the tokens held by this contract
         token.burn(amount); // Burn the tokens on Polygon

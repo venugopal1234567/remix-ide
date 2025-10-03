@@ -1,0 +1,806 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_owner",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "from",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "level",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "EarningsCredited",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "level",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					}
+				],
+				"name": "LevelPurchased",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "level",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "cycleCount",
+						"type": "uint256"
+					}
+				],
+				"name": "MatrixCycled",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "referrer",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "level",
+						"type": "uint8"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "position",
+						"type": "uint8"
+					}
+				],
+				"name": "MatrixPlacement",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "referrer",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "userId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "referrerId",
+						"type": "uint256"
+					}
+				],
+				"name": "UserRegistered",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "amount",
+						"type": "uint256"
+					}
+				],
+				"name": "Withdrawal",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "MATRIX_SIZE",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "MAX_LEVEL",
+				"outputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "_level",
+						"type": "uint8"
+					}
+				],
+				"name": "buyLevel",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getContractBalance",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					},
+					{
+						"internalType": "uint8",
+						"name": "_level",
+						"type": "uint8"
+					}
+				],
+				"name": "getMatrixInfo",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "referrals",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "cycleCount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isActive",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getRegistrationCost",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					}
+				],
+				"name": "getUserActiveLevels",
+				"outputs": [
+					{
+						"internalType": "uint8[]",
+						"name": "",
+						"type": "uint8[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					}
+				],
+				"name": "getUserInfo",
+				"outputs": [
+					{
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "id",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "referrer",
+								"type": "address"
+							},
+							{
+								"internalType": "uint256",
+								"name": "referralCount",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "totalEarned",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "availableBalance",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "registrationTime",
+								"type": "uint256"
+							}
+						],
+						"internalType": "struct SimplifiedMLMMatrix.User",
+						"name": "",
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					}
+				],
+				"name": "getUserReferrals",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "idToAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_user",
+						"type": "address"
+					}
+				],
+				"name": "isUserExists",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"name": "levelPrice",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint8",
+						"name": "",
+						"type": "uint8"
+					}
+				],
+				"name": "matrixLevels",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "cycleCount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bool",
+						"name": "isActive",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "nextUserId",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_referrer",
+						"type": "address"
+					}
+				],
+				"name": "register",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "users",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "id",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "referrer",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "referralCount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalEarned",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "availableBalance",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "registrationTime",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdrawAmount",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"details": "Implements a single X3 matrix (3 referrals per position) with automatic reinvestment  Key Features: - User registration under referrer - 8-level matrix system with progressive pricing - Automatic matrix cycling and reinvestment - Upstream referrer payouts - User withdrawal system - Full event logging for frontend integration",
+			"events": {
+				"EarningsCredited(address,address,uint8,uint256)": {
+					"params": {
+						"amount": "Amount earned in wei",
+						"from": "Address of the payer",
+						"level": "Level at which earnings occurred",
+						"user": "Address receiving earnings"
+					}
+				},
+				"LevelPurchased(address,uint8,uint256)": {
+					"params": {
+						"level": "Level purchased",
+						"price": "Amount paid in wei",
+						"user": "Address of the user"
+					}
+				},
+				"MatrixCycled(address,uint8,uint256)": {
+					"params": {
+						"cycleCount": "New cycle count",
+						"level": "Level that cycled",
+						"user": "Address whose matrix cycled"
+					}
+				},
+				"MatrixPlacement(address,address,uint8,uint8)": {
+					"params": {
+						"level": "Matrix level",
+						"position": "Position in matrix (1-3)",
+						"referrer": "Address of matrix owner",
+						"user": "Address placed in matrix"
+					}
+				},
+				"UserRegistered(address,address,uint256,uint256)": {
+					"params": {
+						"referrer": "Address of the referrer",
+						"referrerId": "ID of the referrer",
+						"user": "Address of the new user",
+						"userId": "ID assigned to the new user"
+					}
+				},
+				"Withdrawal(address,uint256)": {
+					"params": {
+						"amount": "Amount withdrawn in wei",
+						"user": "Address withdrawing"
+					}
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"buyLevel(uint8)": {
+					"details": "User must own previous level. Payment is level price.",
+					"params": {
+						"_level": "Level to purchase (2-8)"
+					}
+				},
+				"constructor": {
+					"details": "Owner is automatically registered as user ID 1 with all levels active",
+					"params": {
+						"_owner": "Address to set as contract owner"
+					}
+				},
+				"getContractBalance()": {
+					"returns": {
+						"_0": "uint256 Contract balance in wei"
+					}
+				},
+				"getMatrixInfo(address,uint8)": {
+					"params": {
+						"_level": "Level to query (1-8)",
+						"_user": "Address to query"
+					},
+					"returns": {
+						"cycleCount": "Number of cycles completed",
+						"isActive": "Whether level is active",
+						"referrals": "Array of referral addresses"
+					}
+				},
+				"getRegistrationCost()": {
+					"returns": {
+						"_0": "uint256 Cost in wei"
+					}
+				},
+				"getUserActiveLevels(address)": {
+					"params": {
+						"_user": "Address to query"
+					},
+					"returns": {
+						"_0": "Array of active level numbers"
+					}
+				},
+				"getUserInfo(address)": {
+					"params": {
+						"_user": "Address to query"
+					},
+					"returns": {
+						"_0": "User struct"
+					}
+				},
+				"getUserReferrals(address)": {
+					"params": {
+						"_user": "Address to query"
+					},
+					"returns": {
+						"_0": "Array of referral addresses"
+					}
+				},
+				"isUserExists(address)": {
+					"params": {
+						"_user": "Address to check"
+					},
+					"returns": {
+						"_0": "bool True if user is registered"
+					}
+				},
+				"register(address)": {
+					"details": "Requires payment of level 1 price. Activates level 1 automatically.      User cannot be a contract. Referrer must exist and have level 1 active.",
+					"params": {
+						"_referrer": "Address of the referrer (must be existing user)"
+					}
+				},
+				"withdraw()": {
+					"details": "Transfers entire available balance to user"
+				},
+				"withdrawAmount(uint256)": {
+					"params": {
+						"_amount": "Amount to withdraw in wei"
+					}
+				}
+			},
+			"title": "SimplifiedMLMMatrix",
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"EarningsCredited(address,address,uint8,uint256)": {
+					"notice": "Emitted when earnings are credited to a user"
+				},
+				"LevelPurchased(address,uint8,uint256)": {
+					"notice": "Emitted when a user purchases a new level"
+				},
+				"MatrixCycled(address,uint8,uint256)": {
+					"notice": "Emitted when a matrix cycles and reinvests"
+				},
+				"MatrixPlacement(address,address,uint8,uint8)": {
+					"notice": "Emitted when a user is placed in someone's matrix"
+				},
+				"UserRegistered(address,address,uint256,uint256)": {
+					"notice": "Emitted when a new user registers"
+				},
+				"Withdrawal(address,uint256)": {
+					"notice": "Emitted when a user withdraws funds"
+				}
+			},
+			"kind": "user",
+			"methods": {
+				"MATRIX_SIZE()": {
+					"notice": "Maximum referrals per matrix position"
+				},
+				"MAX_LEVEL()": {
+					"notice": "Total number of levels in the system"
+				},
+				"buyLevel(uint8)": {
+					"notice": "Purchase a new matrix level"
+				},
+				"constructor": {
+					"notice": "Initializes the contract with owner and level pricing"
+				},
+				"getContractBalance()": {
+					"notice": "Get total contract balance"
+				},
+				"getMatrixInfo(address,uint8)": {
+					"notice": "Get matrix information for a user at a level"
+				},
+				"getRegistrationCost()": {
+					"notice": "Get registration cost"
+				},
+				"getUserActiveLevels(address)": {
+					"notice": "Get active levels for a user"
+				},
+				"getUserInfo(address)": {
+					"notice": "Get user information"
+				},
+				"getUserReferrals(address)": {
+					"notice": "Get all referrals for a user"
+				},
+				"idToAddress(uint256)": {
+					"notice": "Mapping from user ID to address"
+				},
+				"isUserExists(address)": {
+					"notice": "Check if user exists"
+				},
+				"levelPrice(uint8)": {
+					"notice": "Price for each level in wei"
+				},
+				"matrixLevels(address,uint8)": {
+					"notice": "Mapping from address to level to MatrixLevel"
+				},
+				"nextUserId()": {
+					"notice": "Next user ID to be assigned"
+				},
+				"owner()": {
+					"notice": "Contract owner/admin address"
+				},
+				"register(address)": {
+					"notice": "Register a new user under a referrer"
+				},
+				"users(address)": {
+					"notice": "Mapping from user address to User struct"
+				},
+				"withdraw()": {
+					"notice": "Withdraw available balance"
+				},
+				"withdrawAmount(uint256)": {
+					"notice": "Withdraw specific amount"
+				}
+			},
+			"notice": "A simplified multi-level marketing contract with matrix-based referral system",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"contracts/MLMMatrix.sol": "SimplifiedMLMMatrix"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/MLMMatrix.sol": {
+			"keccak256": "0x7d3e8b6708555bc1b1ccd4abc7424e55a17c4f52fb0c5e07706a6f74a5552ddc",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://07d978c864467b47976c1cffb1d24efeaa31c1f8436ff0b8bdf8a3f947a84b43",
+				"dweb:/ipfs/QmeyTgQmfyuXTsUP9NJY5CZXcxooHpoRCQdMiKQnKsFrp7"
+			]
+		}
+	},
+	"version": 1
+}

@@ -187,11 +187,11 @@
 	},
 	"sources": {
 		"contracts/BridgeBase.sol": {
-			"keccak256": "0x3a0ff8f15072a3e60625956c721b628a9109d4370b6bbb1426d85e4d39370c31",
+			"keccak256": "0x433dfa45bc7faf1e27bcfcae5025bb0799a3a37021dc7b27485a26bd8828c303",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://76f05afae46b273fe99981977e1b45e797b44e8628419ebaba72f9eabe4de94b",
-				"dweb:/ipfs/QmWCwVFbKuim8jjPbezGZAokHXqXLppLj7JY6sjcfBFXA6"
+				"bzz-raw://575afb16996a0cdf32e745610ec66569684f53f49dad3f2c7d8ad78a05300dda",
+				"dweb:/ipfs/QmbQ7u9TSrQiRtE9tpK9XowV9FVTPJevk8zeB47eHKWjhK"
 			]
 		},
 		"contracts/FFATtoken.sol": {

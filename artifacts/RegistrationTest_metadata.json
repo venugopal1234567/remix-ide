@@ -1,0 +1,186 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "beforeAll",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "beforeEach",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testContractBalanceZero",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testLastLevelConstant",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testLastUserIdStartsAtTwo",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testLevelPrices",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testOwnerAllLevelsActive",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testOwnerHasIDOne",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testOwnerIsRegistered",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testOwnerZeroPartnersInitially",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testRejectNonExistentReferrer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testRejectWrongAmount",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"testContractBalanceZero()": {
+					"notice": "Test: Contract balance starts at zero"
+				},
+				"testLastLevelConstant()": {
+					"notice": "Test: LAST_LEVEL constant is 12"
+				},
+				"testLastUserIdStartsAtTwo()": {
+					"notice": "Test: lastUserId starts at 2"
+				},
+				"testLevelPrices()": {
+					"notice": "Test: Level prices are correct"
+				},
+				"testOwnerAllLevelsActive()": {
+					"notice": "Test: Owner has all levels active"
+				},
+				"testOwnerHasIDOne()": {
+					"notice": "Test: Owner has correct ID"
+				},
+				"testOwnerIsRegistered()": {
+					"notice": "Test: Owner is pre-registered"
+				},
+				"testOwnerZeroPartnersInitially()": {
+					"notice": "Test: Owner has zero partners initially"
+				},
+				"testRejectNonExistentReferrer()": {
+					"notice": "Test: Cannot register non-existent referrer"
+				},
+				"testRejectWrongAmount()": {
+					"notice": "Test: Cannot register with wrong amount"
+				}
+			},
+			"notice": "Test Suite 1: Registration Scenarios Tests user registration functionality",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"tests/SmartMatrixForsage_Registration_test.sol": "RegistrationTest"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/SmartMatrixForsage.sol": {
+			"keccak256": "0xca843e00a9a7c0e483cc7c170244310b7850fa226181a6e9e6e0ee07572e9734",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7ab8a67beb4bff12cd273001c47dcfe0759b442b3843738776b2076db510ddad",
+				"dweb:/ipfs/QmXafWiVcdHgXHvdMJWWf8zMVDv4Lc5b6aWtULZFqYHUQ9"
+			]
+		},
+		"remix_accounts.sol": {
+			"keccak256": "0xab088ffd1cd1033f54c2486f151b5d02281a3b76724c8e6f48479c25a4f7809e",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://5ddaf9976b1838f7028cbedfaf7f6e1cf8c898e100221176ff1406ee8b599f23",
+				"dweb:/ipfs/QmX2FYLXYyo5Cn55ZX2CfngpscSh4mQhcMVzQdQsh2vqcG"
+			]
+		},
+		"remix_tests.sol": {
+			"keccak256": "0xe2783cdc204cba8c72494119339f1d90f9022b15d6c718c668b7f097d8e29787",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://bb6a22e64c7f16bcaab63b1c1a1b269d5be8a6d37bdd9dec1718477ab916b18e",
+				"dweb:/ipfs/QmdkW1tT5iadBvaHMCoskhDGZKnfdg8o1D9CcoQYtdJet7"
+			]
+		},
+		"tests/SmartMatrixForsage_Registration_test.sol": {
+			"keccak256": "0xd055fbe9fc53b9756398586596d5878624e0ccba80ac8936de2f121dc6b02fa6",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://cfc6ff3cb39cfe4aa1a008544b9449599e58f46edbc7d1706b3a335b27156b5c",
+				"dweb:/ipfs/QmSwzn83jpb3uUszsqQksnvh6VhyFySCasRE3Hju9hWbiP"
+			]
+		}
+	},
+	"version": 1
+}

@@ -1,0 +1,308 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [],
+				"name": "beforeEach",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testBuyLevel2",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testCannotBuyAlreadyActivatedLevel",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testCannotBuyLevelWithoutPreviousLevel",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testCannotRegisterTwice",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testCannotRegisterWithNonExistentReferrer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testCannotRegisterWithWrongAmount",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testCannotWithdrawMoreThanBalance",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testCannotWithdrawWithZeroBalance",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testContractBalance",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testDeployment",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testFindFreeX3Referrer",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testGetUserBalance",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testInvalidMatrixNumber",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testLevel1Activation",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testLevelPrices",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testMatrixCycling",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testMatrixStructure",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testOwnerActiveLevels",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testOwnerCanWithdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testOwnerEarningsAfterRegistration",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testOwnerRegistration",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testReferralCountIncrement",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "testUserRegistration",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {
+				"testBuyLevel2()": {
+					"notice": "#value: 50000000000000000 #sender: account-2"
+				},
+				"testCannotBuyAlreadyActivatedLevel()": {
+					"notice": "#sender: account-1"
+				},
+				"testCannotBuyLevelWithoutPreviousLevel()": {
+					"notice": "#sender: account-1"
+				},
+				"testCannotRegisterTwice()": {
+					"notice": "#value: 50000000000000000 #sender: account-1"
+				},
+				"testCannotRegisterWithNonExistentReferrer()": {
+					"notice": "#sender: account-2"
+				},
+				"testCannotRegisterWithWrongAmount()": {
+					"notice": "#value: 30000000000000000 #sender: account-2"
+				},
+				"testCannotWithdrawMoreThanBalance()": {
+					"notice": "#sender: account-1"
+				},
+				"testCannotWithdrawWithZeroBalance()": {
+					"notice": "#sender: account-1"
+				},
+				"testContractBalance()": {
+					"notice": "#sender: account-0"
+				},
+				"testDeployment()": {
+					"notice": "#sender: account-0"
+				},
+				"testFindFreeX3Referrer()": {
+					"notice": "#sender: account-0"
+				},
+				"testGetUserBalance()": {
+					"notice": "#sender: account-1"
+				},
+				"testInvalidMatrixNumber()": {
+					"notice": "#sender: account-1"
+				},
+				"testLevel1Activation()": {
+					"notice": "#value: 50000000000000000 #sender: account-1"
+				},
+				"testLevelPrices()": {
+					"notice": "#sender: account-0"
+				},
+				"testMatrixCycling()": {
+					"notice": "#value: 150000000000000000 #sender: account-2"
+				},
+				"testMatrixStructure()": {
+					"notice": "#sender: account-0"
+				},
+				"testOwnerActiveLevels()": {
+					"notice": "#sender: account-0"
+				},
+				"testOwnerCanWithdraw()": {
+					"notice": "#sender: account-0"
+				},
+				"testOwnerEarningsAfterRegistration()": {
+					"notice": "#sender: account-0"
+				},
+				"testOwnerRegistration()": {
+					"notice": "#sender: account-0"
+				},
+				"testReferralCountIncrement()": {
+					"notice": "#sender: account-0"
+				},
+				"testUserRegistration()": {
+					"notice": "#value: 50000000000000000 #sender: account-1"
+				}
+			},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"tests/SmartMatrixForsage_test.sol": "SmartMatrixForsageTest"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"contracts/SmartMatrixForsage.sol": {
+			"keccak256": "0xca843e00a9a7c0e483cc7c170244310b7850fa226181a6e9e6e0ee07572e9734",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://7ab8a67beb4bff12cd273001c47dcfe0759b442b3843738776b2076db510ddad",
+				"dweb:/ipfs/QmXafWiVcdHgXHvdMJWWf8zMVDv4Lc5b6aWtULZFqYHUQ9"
+			]
+		},
+		"remix_accounts.sol": {
+			"keccak256": "0x722e8fd271de98c2d980bda8e3d011551d9641355216b1029084b455c4c2a662",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://8e57585c7061065613c796706efdae0c79a416bde447ccbe4ffaf969aeb7423e",
+				"dweb:/ipfs/QmdQCAgvob9suV3UwSR2rRetyU9fafTtEi2sDv9oRmRSLo"
+			]
+		},
+		"remix_tests.sol": {
+			"keccak256": "0xe2783cdc204cba8c72494119339f1d90f9022b15d6c718c668b7f097d8e29787",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://bb6a22e64c7f16bcaab63b1c1a1b269d5be8a6d37bdd9dec1718477ab916b18e",
+				"dweb:/ipfs/QmdkW1tT5iadBvaHMCoskhDGZKnfdg8o1D9CcoQYtdJet7"
+			]
+		},
+		"tests/SmartMatrixForsage_test.sol": {
+			"keccak256": "0x89b27aeaf4e4893c66525a1bd3dfaf06ab502516af8af378913ac963d74a3a4c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d344f843fec362c58aff143fcf56a9e5713e942b16ea4e2a0568cb36c2a2a99c",
+				"dweb:/ipfs/QmbZuWKRbySMDXmnTWwu1t2QfjQ3E8RhFsc5GfdbY1cjBE"
+			]
+		}
+	},
+	"version": 1
+}
