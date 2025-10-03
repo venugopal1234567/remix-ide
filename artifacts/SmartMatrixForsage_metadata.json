@@ -604,13 +604,151 @@
 			}
 		],
 		"devdoc": {
+			"details": "Modified version with working withdrawals and simplified single-matrix system  Key Features: - User registration under referrers - 12 progressive levels (0.025 ETH to 51.2 ETH) - X3 matrix: 3 referral slots per level - Automatic matrix cycling and reinvestment - Balance tracking with withdrawal functionality  Changes from original Forsage: - Removed X6 matrix (complexity reduction) - Added working withdrawal system - Improved balance tracking (totalEarned + availableBalance) - Updated to Solidity 0.8+ (built-in overflow protection)",
 			"kind": "dev",
-			"methods": {},
+			"methods": {
+				"buyNewLevel(uint8,uint8)": {
+					"details": "User must own previous level. Payment must match level price.",
+					"params": {
+						"level": "Level to purchase (2-12)",
+						"matrix": "Matrix type (must be 1 for X3, X6 removed)"
+					}
+				},
+				"constructor": {
+					"details": "Owner is pre-registered with all levels active",
+					"params": {
+						"ownerAddress": "Address to set as owner (gets user ID 1)"
+					}
+				},
+				"findFreeX3Referrer(address,uint8)": {
+					"details": "Walks up referrer chain until finding active user",
+					"params": {
+						"level": "Level to check",
+						"userAddress": "Starting user"
+					},
+					"returns": {
+						"_0": "address First referrer with level active"
+					}
+				},
+				"getContractBalance()": {
+					"returns": {
+						"_0": "uint256 Contract balance in wei"
+					}
+				},
+				"getUserBalance(address)": {
+					"params": {
+						"_user": "Address to query"
+					},
+					"returns": {
+						"availableBalance": "Withdrawable balance",
+						"totalEarned": "Lifetime earnings"
+					}
+				},
+				"isUserExists(address)": {
+					"params": {
+						"user": "Address to check"
+					},
+					"returns": {
+						"_0": "bool True if user is registered"
+					}
+				},
+				"registrationExt(address)": {
+					"details": "Requires exactly 0.05 ETH payment. Activates level 1 automatically.",
+					"params": {
+						"referrerAddress": "Existing user to use as referrer"
+					}
+				},
+				"usersActiveX3Levels(address,uint8)": {
+					"params": {
+						"level": "Level to check (1-12)",
+						"userAddress": "User to check"
+					},
+					"returns": {
+						"_0": "bool True if level is active"
+					}
+				},
+				"usersX3Matrix(address,uint8)": {
+					"params": {
+						"level": "Level to query (1-12)",
+						"userAddress": "User to query"
+					},
+					"returns": {
+						"_0": "currentReferrer User's upline",
+						"_1": "referrals Array of referral addresses",
+						"_2": "blocked True if matrix blocked"
+					}
+				},
+				"withdraw()": {
+					"details": "Transfers all availableBalance to caller"
+				},
+				"withdrawAmount(uint256)": {
+					"params": {
+						"_amount": "Amount in wei to withdraw"
+					}
+				}
+			},
+			"title": "SmartMatrixForsage",
 			"version": 1
 		},
 		"userdoc": {
 			"kind": "user",
-			"methods": {},
+			"methods": {
+				"LAST_LEVEL()": {
+					"notice": "Total number of levels"
+				},
+				"buyNewLevel(uint8,uint8)": {
+					"notice": "Purchase a new level"
+				},
+				"constructor": {
+					"notice": "Initialize contract with owner"
+				},
+				"findFreeX3Referrer(address,uint8)": {
+					"notice": "Find the first active referrer up the chain for a level"
+				},
+				"getContractBalance()": {
+					"notice": "Get total ETH held by contract"
+				},
+				"getUserBalance(address)": {
+					"notice": "Get user's balance information"
+				},
+				"idToAddress(uint256)": {
+					"notice": "Address lookup by user ID"
+				},
+				"isUserExists(address)": {
+					"notice": "Check if user exists"
+				},
+				"lastUserId()": {
+					"notice": "Next user ID to assign"
+				},
+				"levelPrice(uint8)": {
+					"notice": "Price in wei for each level"
+				},
+				"owner()": {
+					"notice": "Contract owner (immutable after deployment)"
+				},
+				"registrationExt(address)": {
+					"notice": "Register a new user under a referrer"
+				},
+				"userIds(uint256)": {
+					"notice": "Address lookup by user ID (duplicate for compatibility)"
+				},
+				"users(address)": {
+					"notice": "User data by address"
+				},
+				"usersActiveX3Levels(address,uint8)": {
+					"notice": "Check if level is active for user"
+				},
+				"usersX3Matrix(address,uint8)": {
+					"notice": "Get matrix information for user at level"
+				},
+				"withdraw()": {
+					"notice": "Withdraw entire available balance"
+				},
+				"withdrawAmount(uint256)": {
+					"notice": "Withdraw specific amount"
+				}
+			},
+			"notice": "Multi-level marketing smart contract with X3 matrix structure",
 			"version": 1
 		}
 	},
@@ -631,11 +769,11 @@
 	},
 	"sources": {
 		"contracts/SmartMatrixForsage.sol": {
-			"keccak256": "0xca843e00a9a7c0e483cc7c170244310b7850fa226181a6e9e6e0ee07572e9734",
+			"keccak256": "0xeffa53481e118992a65ce65b49e578e058356db86df6f688b5c021e7a3238f50",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://7ab8a67beb4bff12cd273001c47dcfe0759b442b3843738776b2076db510ddad",
-				"dweb:/ipfs/QmXafWiVcdHgXHvdMJWWf8zMVDv4Lc5b6aWtULZFqYHUQ9"
+				"bzz-raw://35f0226f402b1702ae51024da0dbcb548d59b9804ec5c4702835f21bfb21adc0",
+				"dweb:/ipfs/QmVbxqn4gnYNgHPsDKLcJNRxMfjs8BhpoGGU9TJxQMAinD"
 			]
 		}
 	},

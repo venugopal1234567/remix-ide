@@ -1,6 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
+/**
+ * @title SmartMatrixForsage
+ * @dev A matrix-based referral system implementing X3 matrix structure
+ * Users can register, upgrade levels, and earn through a multi-level matrix system
+ */
 contract SmartMatrixForsage {
     
     struct User {
@@ -43,6 +48,11 @@ contract SmartMatrixForsage {
     event Withdrawal(address indexed user, uint256 amount);
     
     
+    /**
+     * @dev Constructor initializes the contract with owner and level prices
+     * @param ownerAddress Address of the contract owner (first user with ID 1)
+     * Level prices start at 0.025 ETH and double at each level
+     */
     constructor(address ownerAddress) {
         require(ownerAddress != address(0), "Invalid owner address");
         
@@ -69,10 +79,18 @@ contract SmartMatrixForsage {
         userIds[1] = ownerAddress;
     }
     
+    /**
+     * @dev Fallback function to handle direct ETH transfers
+     * Automatically registers sender with owner as referrer
+     */
     receive() external payable {
         registration(msg.sender, owner);
     }
     
+    /**
+     * @dev Fallback function to handle calls with data
+     * If data is 20 bytes (address), uses it as referrer; otherwise uses owner
+     */
     fallback() external payable {
         if(msg.data.length == 20) {
             registration(msg.sender, bytesToAddress(msg.data));
@@ -81,13 +99,24 @@ contract SmartMatrixForsage {
         }
     }
 
+    /**
+     * @dev External function for user registration with specific referrer
+     * @param referrerAddress Address of the referrer
+     * Requires exactly 0.05 ETH payment
+     */
     function registrationExt(address referrerAddress) external payable {
         registration(msg.sender, referrerAddress);
     }
     
+    /**
+     * @dev Allows existing users to purchase and activate a new level
+     * @param matrix Matrix type (must be 1 for X3)
+     * @param level Level to activate (2-12)
+     * Requires payment equal to the level price
+     */
     function buyNewLevel(uint8 matrix, uint8 level) external payable {
         require(isUserExists(msg.sender), "user is not exists. Register first.");
-        require(matrix == 1, "invalid matrix"); // Only X3 (matrix 1) allowed now
+        require(matrix == 1, "invalid matrix");
         require(msg.value == levelPrice[level], "invalid price");
         require(level > 1 && level <= LAST_LEVEL, "invalid level");
 
@@ -105,6 +134,12 @@ contract SmartMatrixForsage {
         emit Upgrade(msg.sender, freeX3Referrer, 1, level);
     }    
     
+    /**
+     * @dev Internal function to register a new user
+     * @param userAddress Address of the new user
+     * @param referrerAddress Address of the referrer
+     * Requires exactly 0.05 ETH and prevents contract addresses from registering
+     */
     function registration(address userAddress, address referrerAddress) private {
         require(msg.value == 0.05 ether, "registration cost 0.05");
         require(!isUserExists(userAddress), "user exists");
@@ -138,6 +173,13 @@ contract SmartMatrixForsage {
         emit Registration(userAddress, referrerAddress, users[userAddress].id, users[referrerAddress].id);
     }
     
+    /**
+     * @dev Updates the X3 matrix by adding a user to a referrer's matrix
+     * @param userAddress Address of the user being added
+     * @param referrerAddress Address of the referrer
+     * @param level Matrix level being updated
+     * Handles matrix cycling and reinvestment when 3 referrals are reached
+     */
     function updateX3Referrer(address userAddress, address referrerAddress, uint8 level) private {
         users[referrerAddress].x3Matrix[level].referrals.push(userAddress);
 
@@ -147,15 +189,12 @@ contract SmartMatrixForsage {
         }
         
         emit NewUserPlace(userAddress, referrerAddress, 1, level, 3);
-        //close matrix
         delete users[referrerAddress].x3Matrix[level].referrals;
         if (!users[referrerAddress].activeX3Levels[level+1] && level != LAST_LEVEL) {
             users[referrerAddress].x3Matrix[level].blocked = true;
         }
 
-        //create new one by recursion
         if (referrerAddress != owner) {
-            //check referrer active level
             address freeReferrerAddress = findFreeX3Referrer(referrerAddress, level);
             if (users[referrerAddress].x3Matrix[level].currentReferrer != freeReferrerAddress) {
                 users[referrerAddress].x3Matrix[level].currentReferrer = freeReferrerAddress;
@@ -171,6 +210,12 @@ contract SmartMatrixForsage {
         }
     }
     
+    /**
+     * @dev Finds the first active referrer up the referral chain for a given level
+     * @param userAddress Starting user address
+     * @param level Level to check for active referrer
+     * @return Address of the first active referrer in the chain
+     */
     function findFreeX3Referrer(address userAddress, uint8 level) public view returns(address) {
         while (true) {
             if (users[users[userAddress].referrer].activeX3Levels[level]) {
@@ -180,21 +225,46 @@ contract SmartMatrixForsage {
             userAddress = users[userAddress].referrer;
         }
     }
-        
+    
+    /**
+     * @dev Checks if a user has activated a specific X3 level
+     * @param userAddress Address to check
+     * @param level Level to check
+     * @return Boolean indicating if level is active
+     */
     function usersActiveX3Levels(address userAddress, uint8 level) public view returns(bool) {
         return users[userAddress].activeX3Levels[level];
     }
 
+    /**
+     * @dev Returns X3 matrix information for a user at a specific level
+     * @param userAddress Address to query
+     * @param level Level to query
+     * @return Current referrer, array of referrals, and blocked status
+     */
     function usersX3Matrix(address userAddress, uint8 level) public view returns(address, address[] memory, bool) {
         return (users[userAddress].x3Matrix[level].currentReferrer,
                 users[userAddress].x3Matrix[level].referrals,
                 users[userAddress].x3Matrix[level].blocked);
     }
     
+    /**
+     * @dev Checks if a user exists in the system
+     * @param user Address to check
+     * @return Boolean indicating if user is registered
+     */
     function isUserExists(address user) public view returns (bool) {
         return (users[user].id != 0);
     }
 
+    /**
+     * @dev Finds the actual ETH receiver, skipping blocked matrices
+     * @param userAddress Initial receiver address
+     * @param _from Address of the sender
+     * @param matrix Matrix type
+     * @param level Matrix level
+     * @return receiver Final receiver address and whether extra dividends were sent
+     */
     function findEthReceiver(address userAddress, address _from, uint8 matrix, uint8 level) private returns(address, bool) {
         address receiver = userAddress;
         bool isExtraDividends;
@@ -210,12 +280,19 @@ contract SmartMatrixForsage {
         }
     }
 
+    /**
+     * @dev Credits ETH dividends to user's available balance
+     * @param userAddress Address to receive dividends
+     * @param _from Address of the payer
+     * @param matrix Matrix type
+     * @param level Matrix level
+     * Automatically finds unblocked receiver and credits their balance
+     */
     function sendETHDividends(address userAddress, address _from, uint8 matrix, uint8 level) private {
         (address receiver, bool isExtraDividends) = findEthReceiver(userAddress, _from, matrix, level);
 
         uint256 amount = levelPrice[level];
         
-        // Credit to user's balance instead of sending directly
         users[receiver].totalEarned += amount;
         users[receiver].availableBalance += amount;
         
@@ -226,6 +303,10 @@ contract SmartMatrixForsage {
         }
     }
     
+    /**
+     * @dev Withdraws entire available balance to the caller
+     * Requires user to be registered and have positive balance
+     */
     function withdraw() external {
         require(isUserExists(msg.sender), "User not registered");
         uint256 amount = users[msg.sender].availableBalance;
@@ -239,6 +320,11 @@ contract SmartMatrixForsage {
         require(success, "Withdrawal failed");
     }
     
+    /**
+     * @dev Withdraws a specific amount from available balance
+     * @param _amount Amount to withdraw in wei
+     * Requires sufficient balance and positive amount
+     */
     function withdrawAmount(uint256 _amount) external {
         require(isUserExists(msg.sender), "User not registered");
         require(_amount > 0, "Amount must be positive");
@@ -252,15 +338,30 @@ contract SmartMatrixForsage {
         require(success, "Withdrawal failed");
     }
     
+    /**
+     * @dev Returns the balance information for a user
+     * @param _user Address to query
+     * @return totalEarned Total cumulative earnings
+     * @return availableBalance Current withdrawable balance
+     */
     function getUserBalance(address _user) external view returns (uint256 totalEarned, uint256 availableBalance) {
         require(isUserExists(_user), "User does not exist");
         return (users[_user].totalEarned, users[_user].availableBalance);
     }
     
+    /**
+     * @dev Returns the total ETH balance held by the contract
+     * @return Contract balance in wei
+     */
     function getContractBalance() external view returns (uint256) {
         return address(this).balance;
     }
     
+    /**
+     * @dev Converts bytes to address (used in fallback function)
+     * @param bys Bytes to convert
+     * @return addr Extracted address
+     */
     function bytesToAddress(bytes memory bys) private pure returns (address addr) {
         assembly {
             addr := mload(add(bys, 20))
